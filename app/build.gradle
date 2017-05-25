@@ -17,8 +17,8 @@ dependencies {
     compile project(':verticalstepper')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.0.1'
-    testCompile 'org.testng:testng:6.9.6'
     testCompile 'junit:junit:4.12'
 
 
+    androidTestCompile 'junit:junit:4.12'
 }
