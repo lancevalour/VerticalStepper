@@ -7,3 +7,6 @@ dependencies {
 }
 
 ```
+
+## Publish To Bintray
+You have to wait for couple of hours before your library is live on Bintray.

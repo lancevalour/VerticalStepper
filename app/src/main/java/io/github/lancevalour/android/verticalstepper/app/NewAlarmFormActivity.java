@@ -14,6 +14,7 @@ import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ import io.github.lancevalour.android.verticalstepper.fragments.BackConfirmationF
 import io.github.lancevalour.android.verticalstepper.interfaces.VerticalStepperForm;
 
 public class NewAlarmFormActivity extends AppCompatActivity implements VerticalStepperForm {
+    protected final String TAG = getClass().getSimpleName();
 
     public static final String NEW_ALARM_ADDED = "new_alarm_added";
 
@@ -61,6 +63,9 @@ public class NewAlarmFormActivity extends AppCompatActivity implements VerticalS
     private boolean confirmBack = true;
     private ProgressDialog progressDialog;
     private VerticalStepperFormLayout verticalStepperForm;
+
+    private boolean isReviewingSteps = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +132,7 @@ public class NewAlarmFormActivity extends AppCompatActivity implements VerticalS
 
     @Override
     public void onStepOpening(int stepNumber) {
+        Log.d(TAG, "step number " + stepNumber);
         switch (stepNumber) {
             case TITLE_STEP_NUM:
                 // When this step is open, we check that the title is correct
@@ -143,6 +149,7 @@ public class NewAlarmFormActivity extends AppCompatActivity implements VerticalS
             case DAYS_STEP_NUM:
                 // When this step is open, we check the days to verify that at least one is selected
                 checkDays();
+                isReviewingSteps = true;
                 break;
         }
     }
@@ -293,8 +300,12 @@ public class NewAlarmFormActivity extends AppCompatActivity implements VerticalS
             titleIsCorrect = true;
 
             verticalStepperForm.setActiveStepAsCompleted();
-            verticalStepperForm.goToNextStep();
-            // Equivalent to: verticalStepperForm.setStepAsCompleted(TITLE_STEP_NUM);
+
+            if (!isReviewingSteps) {
+
+                verticalStepperForm.goToNextStep();
+            }
+                // Equivalent to: verticalStepperForm.setStepAsCompleted(TITLE_STEP_NUM);
 
         } else {
             String titleErrorString = getResources().getString(R.string.error_title_min_characters);

@@ -224,7 +224,7 @@ public class VerticalStepperFormLayout extends RelativeLayout implements View.On
             if (stepNumber != numberOfSteps) {
                 enableNextButtonInBottomNavigationLayout();
             } else {
-                Log.d(TAG, "last step");
+//                Log.d(TAG, "last step");
                 stepDone.setVisibility(View.VISIBLE);
                 stepNumberTextView.setVisibility(View.INVISIBLE);
 
@@ -502,9 +502,9 @@ public class VerticalStepperFormLayout extends RelativeLayout implements View.On
         this.showVerticalLineWhenStepsAreCollapsed = builder.showVerticalLineWhenStepsAreCollapsed;
         this.showConfirmationStep = builder.showConfirmationStep;
 
-
-        Log.d(TAG, "Steps: " + Arrays.toString(builder.steps));
-        Log.d(TAG, "Steps subtitles: " + Arrays.toString(builder.stepsSubtitles));
+//
+//        Log.d(TAG, "Steps: " + Arrays.toString(builder.steps));
+//        Log.d(TAG, "Steps subtitles: " + Arrays.toString(builder.stepsSubtitles));
 
         initStepperForm(builder.steps, builder.stepsSubtitles);
     }
@@ -512,7 +512,7 @@ public class VerticalStepperFormLayout extends RelativeLayout implements View.On
     protected void initStepperForm(String[] stepsTitles, String[] stepsSubtitles) {
         setSteps(stepsTitles, stepsSubtitles);
 
-        Log.d(TAG, "Number of steps: " + numberOfSteps);
+//        Log.d(TAG, "Number of steps: " + numberOfSteps);
 
         List<View> stepContentLayouts = new ArrayList<>();
         for (int i = 0; i < numberOfSteps; i++) {
@@ -523,7 +523,7 @@ public class VerticalStepperFormLayout extends RelativeLayout implements View.On
 
         initializeForm();
 
-        verticalStepperFormImplementation.onStepOpening(activeStep);
+//        verticalStepperFormImplementation.onStepOpening(activeStep);
     }
 
     protected void setSteps(String[] steps, String[] stepsSubtitles) {
